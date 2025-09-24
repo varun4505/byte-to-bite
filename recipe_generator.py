@@ -48,6 +48,7 @@ else:
 
     # Create two columns layout
     col1, col2 = st.columns([1, 1])
+    st.markdown("<hr style='margin: 2em 0; border: 1px solid #bbb;'>", unsafe_allow_html=True)
     
     # Left column - Recipe Generator
     with col1:
