@@ -53,6 +53,12 @@ else:
     with col1:
         st.header("🍳 Recipe Generator")
         
+        # No-flame toggle
+        no_flame = st.checkbox(
+            "🚫🔥 No-flame recipes only",
+            help="Generate recipes that don't require gas, oven, or open flames. Perfect for dorm rooms or when cooking appliances are limited!"
+        )
+        
         # Ingredient input
         ingredients = st.text_area(
             "Enter ingredients (comma separated):",
@@ -63,7 +69,7 @@ else:
         # Generate recipe
         if st.button("Generate Recipe"):
             if ingredients.strip():
-                recipe_instructions = f"{SYSTEM_PROMPT}\n{recipe_prompt(ingredients)}"
+                recipe_instructions = f"{SYSTEM_PROMPT}\n{recipe_prompt(ingredients, no_flame)}"
                 response = st.session_state.chat.send_message(recipe_instructions)
                 st.session_state.recipe = response.text
                 st.success("✅ Recipe generated!")
